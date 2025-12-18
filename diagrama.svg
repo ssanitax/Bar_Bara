@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="705.124969482422" height="623.4999990463257" viewBox="0 0 705.124969482422 623.4999990463257">
+
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 12px; fill: #111827; }
+      .shape-rect { fill: #ffffff; stroke: #9ca3af; stroke-width: 1; }
+      .shape-entity { fill: #ffffff; stroke: #111827; stroke-width: 2; }
+      .shape-circle { fill: #ffffff; stroke: #9ca3af; stroke-width: 1; }
+      .shape-pill { fill: #ffffff; stroke: #9ca3af; stroke-width: 1; }
+      .shape-db { fill: #ffffff; stroke: #9ca3af; stroke-width: 1; }
+      .conn { stroke: #111827; stroke-width: 2; fill: none; }
+    </style>
+    <marker id="arrow-end" markerWidth="10" markerHeight="7" refX="10" refY="3.5"
+            orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#111827"/>
+    </marker>
+    <marker id="arrow-start" markerWidth="10" markerHeight="7" refX="0" refY="3.5"
+            orient="auto" markerUnits="strokeWidth">
+      <polygon points="10 0, 0 3.5, 10 7" fill="#111827"/>
+    </marker>
+  </defs>
+        
+<rect class="shape-entity" x="40" y="42.50000476837158" width="160" height="190.39999008178714" />
+<line x1="40" y1="73.69998216629028" x2="200" y2="73.69998216629028" stroke="#e5e7eb" stroke-width="1"/>
+<text x="120" y="62.499993085861206" text-anchor="middle">Usuario</text>
+<text x="73.66255187988281" y="94.49999713897705">id</text>
+<text x="73.66255187988281" y="120.10000967979431">nombre_usuario</text>
+<text x="73.66255187988281" y="145.69999957084656">apellidos</text>
+<text x="73.66255187988281" y="171.3000133037567">correo</text>
+<text x="73.66255187988281" y="196.8999936580658">contraseña</text>
+<rect class="shape-entity" x="288.75" y="40" width="161.2750244140625" height="292.8000259399414" />
+<line x1="288.75" y1="71.19998216629028" x2="450.0250244140625" y2="71.19998216629028" stroke="#e5e7eb" stroke-width="1"/>
+<text x="369.38751220703125" y="59.999993085861206" text-anchor="middle">Pedido</text>
+<text x="315.55006408691406" y="91.99999713897705">id</text>
+<text x="315.55006408691406" y="117.60000967979431">usuario_id</text>
+<text x="315.55006408691406" y="143.19999957084656">numero_mesa</text>
+<text x="315.55006408691406" y="168.8000133037567">fecha</text>
+<text x="315.55006408691406" y="194.3999936580658">hora</text>
+<text x="315.55006408691406" y="219.99999904632568">productos</text>
+<text x="315.55006408691406" y="245.60000205039978">cantidad_producto</text>
+<text x="315.55006408691406" y="271.20000743865967">total</text>
+<text x="315.55006408691406" y="296.80001044273376">pedir_cuenta</text>
+<rect class="shape-entity" x="259.00001525878906" y="367.5000524520874" width="160" height="215.9999465942383" />
+<line x1="259.00001525878906" y1="398.69999647140503" x2="419.00001525878906" y2="398.69999647140503" stroke="#e5e7eb" stroke-width="1"/>
+<text x="339.00001525878906" y="387.5000145435333" text-anchor="middle">Producto</text>
+<text x="287.32496643066406" y="419.5000066757202">id</text>
+<text x="287.32496643066406" y="445.10002875328064">nombre_producto</text>
+<text x="287.32496643066406" y="470.70000433921814">precio</text>
+<text x="287.32496643066406" y="496.300009727478">descripcion</text>
+<text x="287.32496643066406" y="521.8999936580658">categoria</text>
+<text x="287.32496643066406" y="547.4999990463257">imagen</text>
+<rect class="shape-entity" x="505.124969482422" y="192.6250410079956" width="160" height="190.3999710083008" />
+<line x1="505.124969482422" y1="223.82498502731323" x2="665.124969482422" y2="223.82498502731323" stroke="#e5e7eb" stroke-width="1"/>
+<text x="585.124969482422" y="212.62500309944153" text-anchor="middle">Contenido_pedido</text>
+<text x="550.6125488281251" y="244.62499523162842">id</text>
+<text x="550.6125488281251" y="270.22501730918884">pedido_id</text>
+<text x="550.6125488281251" y="295.8250036239624">cantidad</text>
+<text x="550.6125488281251" y="321.4250257015228">subtotal</text>
+<text x="550.6125488281251" y="347.0250012874603">producto_id</text>
+<path class="conn" d="M 532.8803364039167 261.2250089645386 L 440.9570964574117 92.99999713897705" marker-end="url(#arrow-end)" />
+<path class="conn" d="M 530.6124877929689 345.81383586825524 L 410.6750488281251 412.71117149887885" marker-end="url(#arrow-end)" />
+<path class="conn" d="M 295.5500030517578 112.6312537928205 L 186.3249969482422 91.46875421804376" marker-end="url(#arrow-end)" />
+</svg>
