@@ -53,4 +53,4 @@ include 'inc/cabecera.php';
     <?php endwhile; ?>
 </div>
 
-<?php include 'piedepagina.php'; ?>
+<?php include 'inc/piedepagina.php'; ?>
