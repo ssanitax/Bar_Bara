@@ -15,5 +15,5 @@ try {
 }
 
 // 2. Cargamos la cabecera que acabamos de crear
-include 'cabecera.php'; 
+include 'inc/cabecera.php'; 
 ?>
