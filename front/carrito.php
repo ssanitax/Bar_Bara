@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include 'inc/cabecera.php'; ?>
 
 <h2>Tu Carrito de Compra</h2>
 

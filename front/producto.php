@@ -1,4 +1,4 @@
-<?php include 'db.php';
+<?php include '../back/inc/conexion_db.php';
 $stmt = $pdo->prepare("SELECT * FROM producto WHERE id = ?");
 $stmt->execute([$_GET['id']]);
 $p = $stmt->fetch();
