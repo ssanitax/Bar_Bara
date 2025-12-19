@@ -54,7 +54,7 @@
         <a href="index.php" class="logo">🍸 BAR BARA</a>
         <ul class="menu">
             <li><a href="index.php">Inicio</a></li>
-            <li><a href="index.php#carta">Carta</a></li>
+            <li><a href="catalogo.php">Carta</a></li>
             <li><a href="contacto.php">Contacto</a></li>
             <li>
                 <a href="carrito.php" class="btn-carrito">
