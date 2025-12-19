@@ -1,5 +1,5 @@
 <?php 
-include 'cabecera.php'; 
+include 'inc/cabecera.php'; 
 
 // --- Lógica de procesamiento del formulario ---
 $mensaje_estado = "";
@@ -76,4 +76,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 
-<?php include 'piedepagina.php'; ?>
+<?php include 'inc/piedepagina.php'; ?>
