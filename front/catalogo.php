@@ -1,4 +1,5 @@
 <?php 
+echo "El usuario que has usado es " . $_POST['usuario']; 
 // Conexión a Bar_Bara
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=Bar_Bara;charset=utf8", "root", "");
