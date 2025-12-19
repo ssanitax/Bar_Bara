@@ -2,7 +2,7 @@
 echo "El usuario que has usado es " . $_POST['usuario']; 
 // Conexión a Bar_Bara
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=Bar_Bara;charset=utf8", "root", "");
+    $pdo = new PDO("mysql:host=localhost;dbname=Bar_Bara;charset=utf8", "admin_bara", "BarBara_2025$");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Error: " . $e->getMessage());
