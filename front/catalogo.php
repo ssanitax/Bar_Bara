@@ -1,5 +1,4 @@
 <?php 
-echo "El usuario que has usado es " . $_POST['usuario']; 
 // Conexión a Bar_Bara
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=Bar_Bara;charset=utf8", "admin_bara", "BarBara_2025$");
@@ -8,7 +7,7 @@ try {
     die("Error: " . $e->getMessage());
 }
 
-include 'cabecera.php'; 
+include 'inc/cabecera.php'; 
 ?>
 
 <h1 style="text-align: center; margin: 30px 0;">Nuestra Carta</h1>
