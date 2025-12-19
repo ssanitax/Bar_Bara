@@ -1,30 +1,30 @@
 CREATE TABLE usuario (
-  id INT,
+  id INT NOT NULL,
   nombre_usuario VARCHAR(255),
   apellidos VARCHAR(255),
   correo VARCHAR(255),
-  contrasea VARCHAR(255),
+  contrasena VARCHAR(255),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE pedido (
-  id INT,
+  id INT NOT NULL,
   usuario_id INT,
-  numero_mesa VARCHAR(255),
+  numero_mesa INT,
   fecha VARCHAR(255),
   hora VARCHAR(255),
   productos VARCHAR(255),
-  cantidad_producto VARCHAR(255),
-  total VARCHAR(255),
+  cantidad_producto INT,
+  total DECIMAL(10,2),
   pedir_cuenta VARCHAR(255),
   PRIMARY KEY (id),
   CONSTRAINT fk_pedido_1 FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );
 
 CREATE TABLE producto (
-  id INT,
+  id INT NOT NULL,
   nombre_producto VARCHAR(255),
-  precio VARCHAR(255),
+  precio DECIMAL(4,2),
   descripcion VARCHAR(255),
   categoria VARCHAR(255),
   imagen VARCHAR(255),
@@ -32,10 +32,10 @@ CREATE TABLE producto (
 );
 
 CREATE TABLE contenido_pedido (
-  id INT,
+  id INT NOT NULL,
   pedido_id INT,
-  cantidad VARCHAR(255),
-  subtotal VARCHAR(255),
+  cantidad INT,
+  subtotal DECIMAL(10,2),
   producto_id INT,
   PRIMARY KEY (id),
   CONSTRAINT fk_contenido_pedido_1 FOREIGN KEY (pedido_id) REFERENCES pedido(id),
