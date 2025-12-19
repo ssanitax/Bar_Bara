@@ -1,9 +1,9 @@
 <?php 
 // 1. Datos de conexión
-$servidor = "127.0.0.1"; // En lugar de "localhost"
+$servidor = "localhost"; // En lugar de "localhost"
 $base_datos = "Bar_Bara";
 $usuario = "admin_bara";    
-$password = "BarBara_2025"; 
+$password = "BarBara_2025$"; 
 
 try {
     $dsn = "mysql:host=$servidor;dbname=$base_datos;charset=utf8mb4";
