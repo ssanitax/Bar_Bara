@@ -1,0 +1,124 @@
+/* css/estilo.css */
+
+/* Definimos nuestras variables de marca (Naranja Bar Bara y Grises) */
+:root {
+    --primario: #e67e22;    /* Naranja principal */
+    --oscuro: #2c3e50;      /* Gris azulado para textos y nav */
+    --fondo: #f4f7f6;       /* Gris muy claro para el fondo */
+    --blanco: #ffffff;
+    --error: #ef4444;       /* Rojo para alertas de cuenta */
+    --exito: #27ae60;       /* Verde para estados operativos */
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--fondo);
+    margin: 0;
+    color: var(--oscuro);
+}
+
+/* Navegación Superior */
+nav {
+    background-color: var(--oscuro);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--blanco);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav .logo {
+    font-weight: bold;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: var(--blanco);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--primario);
+}
+
+/* Contenedor Principal */
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Sistema de Rejilla (Grid) para el Panel */
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Tarjetas (Cards) */
+.card {
+    background: var(--blanco);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+}
+
+/* Botones */
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: var(--primario);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: opacity 0.3s;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Estilos específicos para la gestión del Backend */
+.header-status {
+    background: #e2e8f0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+code {
+    background: #cbd5e1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
