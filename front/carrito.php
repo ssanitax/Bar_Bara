@@ -144,7 +144,7 @@ include 'inc/cabecera.php';
     </form>
 
 <?php else: ?>
-    <p>El carrito está vacío. <a href="catalogo.php">Ir al catálogo</a></p>
+    <p>El carrito está vacío. <a href="catalogo.php">Ir a la carta</a></p>
 <?php endif; ?>
 
 <?php include 'inc/piedepagina.php'; ?>
