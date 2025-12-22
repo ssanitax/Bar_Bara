@@ -1,3 +1,17 @@
+<?php
+// Si la sesión no está iniciada en el archivo padre, la iniciamos aquí para evitar errores
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Lógica para contar cuántos productos hay en total en el carrito
+$cantidad_total = 0;
+if (isset($_SESSION['carrito'])) {
+    foreach ($_SESSION['carrito'] as $producto) {
+        $cantidad_total += $producto['cantidad'];
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -44,6 +58,17 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            font-weight: bold; /* Un poco más de peso para que se vea bien el número */
+        }
+        
+        /* Opcional: Estilo para cuando el contador es mayor que 0 */
+        .badge {
+            background: white;
+            color: #e67e22;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-size: 0.8em;
+            margin-left: 5px;
         }
     </style>
 </head>
@@ -59,8 +84,10 @@
             <li>
                 <a href="carrito.php" class="btn-carrito">
                     🛒 Mi Pedido
+                    <span class="badge"><?= $cantidad_total ?></span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px;">

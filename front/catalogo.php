@@ -1,4 +1,5 @@
 <?php 
+session_start();
 // 1. Conexión subiendo un nivel hacia la carpeta back
 include '../back/inc/conexion_bd.php'; 
 
