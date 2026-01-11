@@ -1,20 +1,15 @@
 <?php
-// front/inc/cabecera.php
-
-// 1. Iniciamos sesión si no está iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 2. Lógica del contador del carrito
 $cantidad_total = 0;
 if (isset($_SESSION['carrito'])) {
     foreach ($_SESSION['carrito'] as $producto) {
-        $cantidad_total += $producto['cantidad'];
+        $cantidad_total = $cantidad_total + $producto['cantidad'];
     }
 }
 
-// 3. Lógica de Usuario Conectado
 $usuario_conectado = isset($_SESSION['user_id']);
 $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
 ?>
@@ -22,87 +17,95 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bar Bara - Carácter & Sabor</title>
-    <link rel="stylesheet" href="css/estilo.css">
+    <title>Bar Bara</title>
     <style>
-        /* Estilos inline para garantizar que la cabecera se vea bien siempre */
-        body { margin: 0; padding-top: 80px; font-family: 'Segoe UI', sans-serif; }
+        body { margin: 0; font-family: sans-serif; background-color: #f8f1e0; }
         
-        header {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background-color: var(--color-navy, #153e5c); 
-            border-bottom: 4px solid var(--color-mustard, #eaa833);
+        .header-azul {
+            background-color: #153e5c; 
+            height: 90px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; 
+            padding: 0 5%;
+            position: relative;
+            z-index: 10; 
+            border-bottom: 4px solid #eaa833;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-        
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 0 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            height: 70px;
-        }
-        
-        .logo { 
-            font-size: 1.5rem; font-weight: 900; color: var(--color-mustard, #eaa833); 
-            text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
-            text-shadow: 2px 2px 0 #000;
-        }
-        
-        .menu { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; align-items: center; }
-        
-        .menu a {
-            color: var(--color-cream, #f8f1e0); text-decoration: none; font-weight: 600;
-            font-size: 0.95rem; text-transform: uppercase; transition: color 0.3s;
-        }
-        
-        .menu a:hover { color: var(--color-mustard, #eaa833); }
 
-        .btn-carrito {
-            background-color: var(--color-red, #c93b2b); padding: 8px 15px; border-radius: 20px;
-            display: flex; align-items: center; gap: 8px; transition: transform 0.2s;
+        .logo-superpuesto {
+            position: absolute;
+            top: 0; 
+            left: 5%;
+            z-index: 100; 
         }
-        .btn-carrito:hover { transform: scale(1.05); }
-        
+
+        .logo-superpuesto img {
+            height: 280px; 
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+        }
+
+        .menu-lista {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .menu-lista a {
+            color: #f8f1e0;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-pedido {
+            background-color: #c93b2b; 
+            padding: 10px 18px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white !important;
+        }
+
         .badge {
-            background: white; color: var(--color-red, #c93b2b); 
-            padding: 2px 6px; border-radius: 50%; font-size: 0.8em; font-weight: bold;
+            background: white;
+            color: #c93b2b;
+            padding: 2px 8px;
+            border-radius: 50%;
         }
 
-        /* Estilos usuario */
-        .user-welcome { color: var(--color-mustard, #eaa833) !important; cursor: default; }
-        .btn-logout { border: 1px solid var(--color-red); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem !important; }
-        .btn-logout:hover { background: var(--color-red); color: white !important; }
-
-        @media (max-width: 768px) {
-            .menu { gap: 10px; }
-            .ocultar-movil { display: none; }
-        }
+        .user-welcome { color: #eaa833; font-weight: bold; margin-right: 10px; }
     </style>
 </head>
 <body>
 
-<header>
-    <nav class="nav-container">
-        <a href="index.php" class="logo">BAR BARA</a>
-        <ul class="menu">
-            <li><a href="catalogo.php">Carta</a></li>
-            
-            <li>
-                <a href="carrito.php" class="btn-carrito">
-                    🛒 <span class="ocultar-movil">Pedido</span>
-                    <?php if($cantidad_total > 0): ?>
-                        <span class="badge"><?= $cantidad_total ?></span>
-                    <?php endif; ?>
-                </a>
-            </li>
+<header class="header-azul">
+    <div class="logo-superpuesto">
+        <a href="index.php">
+            <img src="img/ChatGPT_Image_11_ene_2026__17_05_50-removebg-preview.png" alt="Logo Bar Bara">
+        </a>
+    </div>
 
-            <?php if ($usuario_conectado): ?>
-                <li><span class="user-welcome ocultar-movil">Hola, <?= htmlspecialchars($nombre_usuario) ?></span></li>
-                <li><a href="logout.php" class="btn-logout">Salir</a></li>
-            <?php else: ?>
-                <li><a href="login.php" style="border-bottom: 2px solid var(--color-cream);">👤 Entrar</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
+    <ul class="menu-lista">
+        <li><a href="catalogo.php">Carta</a></li>
+        <li>
+            <a href="carrito.php" class="btn-pedido">
+                🛒 <span class="badge"><?php echo $cantidad_total; ?></span>
+            </a>
+        </li>
+        <?php if ($usuario_conectado): ?>
+            <li><span class="user-welcome">Hola, <?php echo htmlspecialchars($nombre_usuario); ?></span></li>
+            <li><a href="logout.php" style="font-size: 0.8rem; border: 1px solid white; padding: 5px; border-radius: 5px;">Salir</a></li>
+        <?php else: ?>
+            <li><a href="login.php">👤 Entrar</a></li>
+        <?php endif; ?>
+    </ul>
 </header>
-<div style="min-height: 80vh;">
+
+<div style="margin-top: 200px; padding: 20px; min-height: 80vh;">
