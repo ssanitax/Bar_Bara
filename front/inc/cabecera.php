@@ -42,7 +42,7 @@ if (isset($_SESSION['carrito'])) {
             position: absolute;
             top: -20px;
             left: 0;
-            height: 250px; /* Tamaño máximo en escritorio */
+            height: 270px; /* Tamaño máximo en escritorio */
             width: auto;
             z-index: 2000;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
