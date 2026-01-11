@@ -1,0 +1,157 @@
+/* front/css/estilo.css */
+
+:root {
+    /* Paleta extraída del Logo "Bar Bara" */
+    --color-mustard: #eaa833;  /* El círculo de fondo */
+    --color-navy: #153e5c;     /* La camisa */
+    --color-red: #c93b2b;      /* La bandana */
+    --color-cream: #f8f1e0;    /* Fondo suave tipo papel antiguo */
+    --color-dark: #1a1a1a;     /* Negro tinta */
+    --color-white: #ffffff;
+    
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --radius: 12px;            /* Bordes redondeados modernos */
+    --shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+body {
+    background-color: var(--color-cream);
+    font-family: var(--font-main);
+    color: var(--color-navy);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* --- ESTILOS DE NAVEGACIÓN (Sobrescribe/Mejora cabecera.php) --- */
+header {
+    background-color: var(--color-navy) !important;
+    border-bottom: 4px solid var(--color-mustard);
+}
+
+.logo {
+    color: var(--color-mustard) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0px #000;
+}
+
+/* --- HERO SECTION (Página de Inicio) --- */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 70vh; /* Ocupa buena parte de la pantalla */
+    background: radial-gradient(circle, rgba(234,168,51,0.2) 0%, rgba(248,241,224,1) 70%);
+}
+
+.hero-logo-img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.2));
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.hero-logo-img:hover {
+    transform: rotate(-2deg) scale(1.05);
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-navy);
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-red);
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* --- BOTONES PRINCIPALES (Grid) --- */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.btn-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow);
+    border: 2px solid transparent;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+/* 1. Botón CARTA (Estilo Mostaza - Principal) */
+.btn-carta {
+    background-color: var(--color-mustard);
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+.btn-carta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(234, 168, 51, 0.4);
+    background-color: #f0b955;
+}
+
+/* 2. Botón CARRITO (Estilo Rojo - Urgencia/Acción) */
+.btn-carrito-hero {
+    background-color: var(--color-red);
+    color: white;
+}
+.btn-carrito-hero:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(201, 59, 43, 0.4);
+    background-color: #d94c3d;
+}
+
+/* 3. Botón CONTACTO (Estilo Azul - Informativo) */
+.btn-contacto {
+    background-color: var(--color-navy);
+    color: white;
+}
+.btn-contacto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(21, 62, 92, 0.4);
+    background-color: #1e5278;
+}
+
+/* Iconos dentro de los botones (usando emojis o fontawesome si tuvieras) */
+.icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--color-navy) !important;
+    color: var(--color-cream) !important;
+    border-top: 5px solid var(--color-red);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .hero-logo-img { max-width: 200px; }
+    .hero-title { font-size: 2rem; }
+    .action-grid { grid-template-columns: 1fr; } /* Uno debajo de otro en móvil */
+}
