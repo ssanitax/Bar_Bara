@@ -8,6 +8,7 @@ include '../back/inc/conexion_bd.php';
 // -------------------------------------------------------
 if (isset($_POST['add'])) {
     $id_producto = $_POST['id'];
+    $cantidad = isset($_POST['cantidad']) ? (int)$_POST['cantidad'] : 1; // Leemos la cantidad del formulario 
 
     $stmt = $pdo->prepare("SELECT * FROM producto WHERE id = :id");
     $stmt->execute([':id' => $id_producto]);
@@ -18,12 +19,10 @@ if (isset($_POST['add'])) {
             $_SESSION['carrito'] = [];
         }
 
-        $id = $producto_bd['id'];
         $ya_existe = false;
-
         foreach ($_SESSION['carrito'] as $indice => $item) {
-            if ($item['id'] == $id) {
-                $_SESSION['carrito'][$indice]['cantidad']++;
+            if ($item['id'] == $id_producto) {
+                $_SESSION['carrito'][$indice]['cantidad'] += $cantidad; // Sumamos la cantidad elegida [cite: 108, 331]
                 $ya_existe = true;
                 break;
             }
@@ -34,7 +33,7 @@ if (isset($_POST['add'])) {
                 'id' => $producto_bd['id'],
                 'nombre' => $producto_bd['nombre_producto'],
                 'precio' => $producto_bd['precio'],
-                'cantidad' => 1
+                'cantidad' => $cantidad // Guardamos la cantidad seleccionada [cite: 109, 332]
             ];
         }
     }
