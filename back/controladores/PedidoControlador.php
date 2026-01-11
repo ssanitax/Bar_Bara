@@ -9,21 +9,17 @@ class PedidoControlador {
     }
 
     public function crearNuevoPedido($datos) {
-        // 1. Insertamos en la tabla pedido
-        // Usamos fecha y hora del servidor y el campo pedir_cuenta en 'NO' por defecto
+        // El pedido nace con pedir_cuenta = 'NO' (Pendiente de servir)
         $sqlPedido = "INSERT INTO pedido (usuario_id, numero_mesa, fecha, hora, total, pedir_cuenta) 
                       VALUES (?, ?, CURDATE(), CURTIME(), ?, 'NO')";
-        
         $stmt = $this->db->prepare($sqlPedido);
         $stmt->execute([
             $datos['usuario_id'], 
             $datos['numero_mesa'], 
             $datos['total']
         ]);
-        
         $idPedido = $this->db->lastInsertId();
 
-        // 2. Insertamos cada producto en la tabla contenido_pedido
         foreach ($datos['productos'] as $item) {
             $sqlContenido = "INSERT INTO contenido_pedido (pedido_id, producto_id, cantidad, subtotal) 
                              VALUES (?, ?, ?, ?)";
@@ -35,14 +31,17 @@ class PedidoControlador {
                 $item['subtotal']
             ]);
         }
-
         return $idPedido;
     }
 
+    public function marcarComoEntregado($idPedido) {
+        // Cambiamos el estado a ENTREGADO para que desaparezca de la lista de cocina
+        $sql = "UPDATE pedido SET pedir_cuenta = 'ENTREGADO' WHERE id = ?";
+        return $this->db->prepare($sql)->execute([$idPedido]);
+    }
+
     public function solicitarCuenta($idPedido) {
-        // Actualizamos el campo pedir_cuenta a 'SI' para avisar al camarero
         $sql = "UPDATE pedido SET pedir_cuenta = 'SI' WHERE id = ?";
-        $stmt = $this->db->prepare($sql);
-        return $stmt->execute([$idPedido]);
+        return $this->db->prepare($sql)->execute([$idPedido]);
     }
 }

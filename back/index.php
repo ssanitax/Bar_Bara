@@ -1,53 +1,86 @@
 <?php
-// index.php en la raíz
-require_once 'inc/conexion_bd.php';
-require_once 'controladores/PedidoControlador.php';
-require_once 'controladores/ProductoControlador.php';
+// index.php en la raíz del back
+require_once 'inc/conexion_bd.php'; // [cite: 66, 289]
+require_once 'controladores/PedidoControlador.php'; // [cite: 13, 236]
+require_once 'controladores/ProductoControlador.php'; // [cite: 13, 236]
+
+$pedidoCtrl = new PedidoControlador($pdo); // [cite: 24, 247]
+$productoCtrl = new ProductoControlador($pdo); // [cite: 21, 244]
+
+// --- LÓGICA DE ACCIONES ---
+if (isset($_POST['entregar_id'])) {
+    $pedidoCtrl->marcarComoEntregado($_POST['entregar_id']);
+}
 
 try {
-    $productoCtrl = new ProductoControlador($pdo);
-    $totalProductos = count($productoCtrl->listarTodo());
-    $alertasCuenta = $pdo->query("SELECT COUNT(*) FROM pedido WHERE pedir_cuenta = 'SI'")->fetchColumn();
+    $totalProductos = count($productoCtrl->listarTodo()); // [cite: 13, 236]
+    
+    // 1. COMANDAS POR SERVIR (pedir_cuenta = 'NO') 
+    $pendientes = $pdo->query("SELECT * FROM pedido WHERE pedir_cuenta = 'NO' ORDER BY hora ASC")->fetchAll();
+    
+    // 2. ALERTAS DE COBRO (pedir_cuenta = 'SI') [cite: 5, 228]
+    $alertas = $pdo->query("SELECT * FROM pedido WHERE pedir_cuenta = 'SI' ORDER BY hora ASC")->fetchAll();
+    
+    $conteoAlertas = count($alertas); // [cite: 14, 237]
 } catch (Exception $e) {
-    die("Error al conectar con la base de datos: " . $e->getMessage());
+    die("Error en la base de datos: " . $e->getMessage()); // [cite: 15, 238]
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión Bar Bara</title>
-    <link rel="stylesheet" href="css/estilo.css">
-    <meta http-equiv="refresh" content="30">
+    <title>Bar Bara - Panel Unificado</title>
+    <link rel="stylesheet" href="css/estilo.css"> <meta http-equiv="refresh" content="30"> <style>
+        .seccion { margin-bottom: 40px; }
+        .titulo-seccion { 
+            padding: 10px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <nav>
-        <div class="logo">🍴 ADMINISTRACIÓN - BAR BARA</div>
-        <div>
-            <a href="index.php">Panel Principal</a>
-            <a href="admin_pedidos.php">Ver Alertas</a>
-        </div>
+        <div class="logo">🍴 BAR BARA - PANEL DE CONTROL</div> <div class="header-status">
+            <code>PRODUCTOS: <?php echo $totalProductos; ?></code> </div>
     </nav>
+
     <div class="container">
-        <div class="header-status">
-            <code>ESTADO: Conectado a MySQL (Bar_Bara)</code>
-        </div>
-        <h1>Estado del Establecimiento</h1>
-        <div class="grid-productos">
-            <div class="card" style="border-top: 5px solid <?php echo ($alertasCuenta > 0) ? 'var(--error)' : 'var(--exito)'; ?>;">
-                <h3>Mesas pidiendo la cuenta</h3>
-                <p style="font-size: 3em; color: <?php echo ($alertasCuenta > 0) ? 'var(--error)' : 'var(--oscuro)'; ?>;">
-                    <?php echo $alertasCuenta; ?>
-                </p>
-                <a href="admin_pedidos.php" class="button">Gestionar Llamadas</a>
-            </div>
-            <div class="card">
-                <h3>Productos en Carta</h3>
-                <p style="font-size: 3em;"><?php echo $totalProductos; ?></p>
-                <p>Datos leídos de la tabla <code>producto</code></p>
-                <a href="listar_productos.php" class="button" style="background: var(--oscuro)">Ver JSON</a>
+
+        <div class="seccion">
+            <h2 class="titulo-seccion" style="background: var(--error);">🔔 ALERTAS DE COBRO (<?php echo $conteoAlertas; ?>)</h2> <div class="grid-productos">
+                <?php if (empty($alertas)): ?>
+                    <div class="card"><h3>No hay mesas solicitando la cuenta.</h3></div> <?php else: ?>
+                    <?php foreach($alertas as $a): ?>
+                        <div class="card" style="border-left: 10px solid var(--error); text-align: left;"> <h2 style="margin:0">MESA <?php echo $a['numero_mesa']; ?></h2> <p><strong>Total a cobrar: <?php echo $a['total']; ?>€</strong></p> <p>Hora solicitud: <?php echo $a['hora']; ?></p> </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
+
+        <hr>
+
+        <div class="seccion">
+            <h2 class="titulo-seccion" style="background: var(--primario);">📥 COMANDAS POR SERVIR</h2> <div class="grid-productos">
+                <?php if (empty($pendientes)): ?>
+                    <div class="card"><h3>Cero comandas pendientes.</h3></div>
+                <?php else: ?>
+                    <?php foreach ($pendientes as $p): ?>
+                        <div class="card" style="border-left: 10px solid var(--primario); text-align: left;"> <h2 style="margin:0">MESA <?php echo $p['numero_mesa']; ?></h2> <p>Hora pedido: <?php echo $p['hora']; ?></p>
+                            <p>Importe: <?php echo $p['total']; ?>€</p>
+                            <form method="POST">
+                                <input type="hidden" name="entregar_id" value="<?php echo $p['id']; ?>">
+                                <button type="submit" class="button" style="background: var(--exito); width:100%; border:none; cursor:pointer;">
+                                    ✅ MARCAR ENTREGADO
+                                </button> </form>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
