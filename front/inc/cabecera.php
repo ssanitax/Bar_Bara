@@ -37,7 +37,7 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
 
         .logo-superpuesto {
             position: absolute;
-            top: 0; 
+            top: -90px;; 
             left: 5%;
             z-index: 100; 
         }
