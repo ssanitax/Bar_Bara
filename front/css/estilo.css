@@ -156,16 +156,24 @@ footer {
     .action-grid { grid-template-columns: 1fr; }
 }
 
-/* --- ESTILOS CARRITO VACÍO --- */
+/* --- ESTILOS CARRITO VACÍO (CENTRADO PERFECTO) --- */
 .empty-cart-container {
-    text-align: center;
+    display: flex;              /* Activamos Flexbox */
+    flex-direction: column;     /* Elementos uno debajo del otro */
+    align-items: center;        /* ESTO CENTRA LOS ELEMENTOS HORIZONTALMENTE */
+    justify-content: center;    /* Esto ayuda con el centrado vertical */
+    
+    text-align: center;         /* Asegura que el texto interno esté centrado */
     padding: 60px 20px;
     max-width: 600px;
-    margin: 0 auto;
+    
+    /* Margen automático a los lados para centrar la caja en la pantalla */
+    margin: 40px auto;          
+    
     background-color: white;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    border: 1px dashed #ccc; /* Borde discontinuo para dar efecto de "hueco" */
+    border: 2px dashed #ccc;    /* Hice el borde un poco más visible */
 }
 
 .empty-cart-img {
@@ -173,21 +181,24 @@ footer {
     height: auto;
     margin-bottom: 20px;
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
-    animation: float 3s ease-in-out infinite; /* Flota un poquito para llamar la atención */
+    animation: float 3s ease-in-out infinite; 
 }
 
 .empty-title {
     color: var(--color-navy);
     font-size: 2rem;
     margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .empty-text {
     color: #666;
     font-size: 1.1rem;
     margin-bottom: 30px;
+    line-height: 1.5;
 }
 
+/* Animación de flotar */
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
