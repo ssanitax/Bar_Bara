@@ -16,8 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $stmt->fetch();
 
     // Verificamos contraseña
-    // NOTA: Si tu base de datos usa 'contrasena', déjalo así. 
-    // Si usa 'contraseña' (con ñ), cámbialo aquí abajo.
     if ($user && password_verify($pass, $user['contrasena'])) {
         
         // Login correcto: Guardamos sesión

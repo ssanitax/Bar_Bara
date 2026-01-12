@@ -3,9 +3,7 @@ session_start();
 
 include '../back/inc/conexion_bd.php';
 
-// -------------------------------------------------------
 // 1. LÓGICA: AÑADIR PRODUCTO (Viene del Catálogo)
-// -------------------------------------------------------
 if (isset($_POST['add'])) {
     $id_producto = $_POST['id'];
     $cantidad = isset($_POST['cantidad']) ? (int)$_POST['cantidad'] : 1; // Leemos la cantidad del formulario 
@@ -33,7 +31,7 @@ if (isset($_POST['add'])) {
                 'id' => $producto_bd['id'],
                 'nombre' => $producto_bd['nombre_producto'],
                 'precio' => $producto_bd['precio'],
-                'cantidad' => $cantidad // Guardamos la cantidad seleccionada [cite: 109, 332]
+                'cantidad' => $cantidad // Guardamos la cantidad seleccionada
             ];
         }
     }
@@ -41,9 +39,7 @@ if (isset($_POST['add'])) {
     exit;
 }
 
-// -------------------------------------------------------
-// 2. LÓGICA: ELIMINAR PRODUCTO (Nuevo bloque)
-// -------------------------------------------------------
+// 2. LÓGICA: ELIMINAR PRODUCTO
 if (isset($_POST['btn_eliminar'])) {
     $id_a_borrar = $_POST['id_eliminar'];
 
@@ -61,9 +57,7 @@ if (isset($_POST['btn_eliminar'])) {
     exit;
 }
 
-// -------------------------------------------------------
 // 3. CALCULAR TOTAL
-// -------------------------------------------------------
 $total = 0;
 if (isset($_SESSION['carrito'])) {
     foreach ($_SESSION['carrito'] as $item) {
@@ -82,7 +76,7 @@ include 'inc/cabecera.php';
     
     /* Estilo botón eliminar */
     .btn-borrar {
-        background-color: #dc3545; /* Rojo */
+        background-color: #dc3545;
         color: white;
         border: none;
         padding: 5px 10px;

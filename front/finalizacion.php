@@ -2,7 +2,7 @@
 session_start();
 
 // 1. CORRECCIÓN DE RUTAS: Usamos tus archivos reales
-require_once '../back/inc/conexion_bd.php'; // Antes buscaba db.php
+require_once '../back/inc/conexion_bd.php';
 
 // Lógica: El usuario hace clic en "Pedir Cuenta" (Botón rojo)
 $mensaje = "";
@@ -18,7 +18,7 @@ if (isset($_POST['llamar_camarero'])) {
 }
 
 // 2. CORRECCIÓN DE CABECERA
-include 'inc/cabecera.php'; // Antes buscaba header.php
+include 'inc/cabecera.php';
 ?>
 
 <link rel="stylesheet" href="css/estilo.css">

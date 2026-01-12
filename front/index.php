@@ -1,6 +1,5 @@
 <?php 
 // 1. Conexión CENTRALIZADA (Mejor práctica que repetir credenciales)
-// Subimos un nivel (..) para buscar la conexión en la carpeta back
 require_once '../back/inc/conexion_bd.php';
 
 // 2. Cargamos la cabecera

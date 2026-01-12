@@ -11,8 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $asunto  = htmlspecialchars($_POST['asunto']);
     $mensaje = htmlspecialchars($_POST['mensaje']);
 
-    // Aquí podrías guardar los mensajes en una tabla 'contacto' de tu BD Bar_Bara
-    // O enviar un email. Por ahora, simularemos éxito:
     if (!empty($nombre) && !empty($email) && !empty($mensaje)) {
         $mensaje_estado = "<div style='background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #c3e6cb;'>
             ¡Gracias, <strong>$nombre</strong>! Hemos recibido tu mensaje sobre '$asunto'. Te responderemos pronto a <em>$email</em>.
