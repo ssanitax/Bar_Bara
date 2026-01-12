@@ -46,6 +46,33 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
             z-index: 100; 
         }
 
+        .logo-superpuesto img {
+            /* TAMAÑO FIJO EN PÍXELES (Ya no cambia 'a lo loco') */
+            height: 160px; 
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            transition: all 0.3s ease; /* Suavidad si cambiamos de tamaño */
+        }
+
+        /* --- MODO TELÉFONO (Pantallas pequeñas) --- */
+        @media (max-width: 768px) {
+            /* En móvil, ajustamos un poco para que no sea gigante, pero se mantiene fijo */
+            .logo-superpuesto img {
+                height: 120px; 
+            }
+            .logo-superpuesto {
+                top: -15px; /* Lo subimos un poco menos */
+                left: 15px; /* Un poco más pegado al borde */
+            }
+            
+            /* Opcional: Si en móvil prefieres el menú más compacto */
+            .header-azul {
+                padding: 0 15px;
+            }
+        }
+        /* ----------------------------------------------- */
+
         .menu-lista {
             display: flex;
             list-style: none;
