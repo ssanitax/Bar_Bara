@@ -29,56 +29,33 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
             align-items: center;
             justify-content: flex-end; 
             padding: 0 5%;
-            
-            /* Esto es vital para que el logo se posicione respecto a la barra */
-            position: relative; 
+            position: relative;
             z-index: 10;
             border-bottom: 4px solid #eaa833;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* --- AQUÍ ESTÁ EL CAMBIO PARA FIJAR EL LOGO --- */
         .logo-superpuesto {
             position: absolute;
-            /* Coordenadas Fijas */
             top: -30px; 
-            left: 20px; 
+            left: 20px;
             z-index: 100; 
         }
 
         .logo-superpuesto img {
-            /* TAMAÑO FIJO EN PÍXELES */
-            height: 160px; 
+            height: 160px;
             width: auto;
             display: block;
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-            transition: all 0.3s ease; /* Suavidad al cambiar de tamaño */
+            transition: all 0.3s ease;
         }
-
-        /* --- MODO TELÉFONO --- */
-        @media (max-width: 768px) {
-            /* En móvil, ajustamos un poco para que no sea gigante, pero se mantiene fijo */
-            .logo-superpuesto img {
-                height: 120px; 
-            }
-            .logo-superpuesto {
-                top: -15px; 
-                left: 15px; 
-            }
-            
-            /* Mmenú más compacto */
-            .header-azul {
-                padding: 0 15px;
-            }
-        }
-        /* ----------------------------------------------- */
 
         .menu-lista {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
             align-items: center;
-            margin: 0; padding: 0; /* Limpieza de estilos por defecto */
+            margin: 0; padding: 0;
         }
 
         .menu-lista a {
@@ -86,7 +63,7 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.9rem; /* Tamaño legible */
+            font-size: 0.85rem;
         }
 
         .btn-pedido {
@@ -99,7 +76,6 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
             color: white !important;
             transition: transform 0.2s;
         }
-        .btn-pedido:hover { transform: scale(1.05); }
 
         .badge {
             background: white;
@@ -112,9 +88,10 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
 
         .user-welcome { color: #eaa833; font-weight: bold; margin-right: 5px; }
         
-        /* Ajuste para que el menú no se rompa en pantallas MUY pequeñas */
-        @media (max-width: 600px) {
-            .menu-lista { gap: 10px; }
+        @media (max-width: 768px) {
+            .logo-superpuesto img { height: 110px; }
+            .logo-superpuesto { top: -15px; left: 10px; }
+            .menu-lista { gap: 12px; }
             .ocultar-movil { display: none; }
         }
     </style>
@@ -130,18 +107,24 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
 
     <ul class="menu-lista">
         <li><a href="catalogo.php">Carta</a></li>
+        
+        <?php if ($usuario_conectado): ?>
+            <li><a href="historial.php">Historial</a></li>
+            <li><span class="user-welcome ocultar-movil">Hola, <?php echo htmlspecialchars($nombre_usuario); ?></span></li>
+        <?php endif; ?>
+
         <li>
             <a href="carrito.php" class="btn-pedido">
                 🛒 <span class="badge"><?php echo $cantidad_total; ?></span>
             </a>
         </li>
+
         <?php if ($usuario_conectado): ?>
-            <li><span class="user-welcome">Hola, <?php echo htmlspecialchars($nombre_usuario); ?></span></li>
-            <li><a href="logout.php" style="font-size: 0.8rem; border: 1px solid white; padding: 5px; border-radius: 5px;">Salir</a></li>
+            <li><a href="logout.php" style="font-size: 0.75rem; border: 1px solid white; padding: 4px; border-radius: 5px;">Salir</a></li>
         <?php else: ?>
             <li><a href="login.php">👤 Entrar</a></li>
         <?php endif; ?>
     </ul>
 </header>
 
-<div style="margin-top: -100px; padding: 20px; min-height: 80vh;">
+<div style="margin-top: 50px; padding: 20px; min-height: 80vh;">
