@@ -37,17 +37,19 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
 
         .logo-superpuesto {
             position: absolute;
-            top: -90px;; 
-            left: 5%;
+            top: -40px;
+            left: 3%;
             z-index: 100; 
         }
 
         .logo-superpuesto img {
-            height: 280px; 
-            width: auto;
-            display: block;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-        }
+    height: 25vw; /* El alto será el 25% del ancho de la pantalla */
+    max-height: 280px; /* Nunca superará los 280px */
+    min-height: 100px; /* Nunca será más pequeño de 100px */
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
 
         .menu-lista {
             display: flex;
@@ -108,4 +110,4 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
     </ul>
 </header>
 
-<div style="margin-top: 200px; padding: 20px; min-height: 80vh;">
+<div style="margin-top: -100px; padding: 20px; min-height: 80vh;">

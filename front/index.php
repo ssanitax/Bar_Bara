@@ -11,8 +11,7 @@ include 'inc/cabecera.php';
 <main class="hero-section">
     
     <img src="img/logo_home.png" alt="Bar Bara Logo" class="hero-logo-img">
-    
-    <h1 class="hero-title">BAR BARA</h1>
+
     <p class="hero-subtitle">Comida con Carácter & Tragos Rebeldes</p>
 
     <div class="action-grid">
