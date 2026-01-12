@@ -1,11 +1,11 @@
 <?php
 // index.php en la raíz del back
-require_once 'inc/conexion_bd.php'; // [cite: 66, 289]
-require_once 'controladores/PedidoControlador.php'; // [cite: 13, 236]
-require_once 'controladores/ProductoControlador.php'; // [cite: 13, 236]
+require_once 'inc/conexion_bd.php'; 
+require_once 'controladores/PedidoControlador.php'; 
+require_once 'controladores/ProductoControlador.php'; 
 
-$pedidoCtrl = new PedidoControlador($pdo); // [cite: 24, 247]
-$productoCtrl = new ProductoControlador($pdo); // [cite: 21, 244]
+$pedidoCtrl = new PedidoControlador($pdo); 
+$productoCtrl = new ProductoControlador($pdo); 
 
 // --- LÓGICA DE ACCIONES ---
 if (isset($_POST['entregar_id'])) {
@@ -13,17 +13,17 @@ if (isset($_POST['entregar_id'])) {
 }
 
 try {
-    $totalProductos = count($productoCtrl->listarTodo()); // [cite: 13, 236]
+    $totalProductos = count($productoCtrl->listarTodo());
     
-    // 1. COMANDAS POR SERVIR (pedir_cuenta = 'NO') 
+    // 1. COMANDAS POR SERVIR 
     $pendientes = $pdo->query("SELECT * FROM pedido WHERE pedir_cuenta = 'NO' ORDER BY hora ASC")->fetchAll();
     
-    // 2. ALERTAS DE COBRO (pedir_cuenta = 'SI') [cite: 5, 228]
+    // 2. ALERTAS DE COBRO 
     $alertas = $pdo->query("SELECT * FROM pedido WHERE pedir_cuenta = 'SI' ORDER BY hora ASC")->fetchAll();
     
-    $conteoAlertas = count($alertas); // [cite: 14, 237]
+    $conteoAlertas = count($alertas); 
 } catch (Exception $e) {
-    die("Error en la base de datos: " . $e->getMessage()); // [cite: 15, 238]
+    die("Error en la base de datos: " . $e->getMessage()); 
 }
 ?>
 <!DOCTYPE html>

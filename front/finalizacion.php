@@ -1,10 +1,10 @@
 <?php 
 session_start();
 
-// 1. CORRECCIÓN DE RUTAS: Usamos tus archivos reales
+// 1. RUTAS
 require_once '../back/inc/conexion_bd.php';
 
-// Lógica: El usuario hace clic en "Pedir Cuenta" (Botón rojo)
+// El usuario hace clic en "Pedir Cuenta"
 $mensaje = "";
 if (isset($_POST['llamar_camarero'])) {
     $id_pedido = $_POST['pedido_id'];

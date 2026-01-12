@@ -1,5 +1,5 @@
 <?php 
-// 1. Conexión CENTRALIZADA (Mejor práctica que repetir credenciales)
+// 1. Conexión CENTRALIZADA
 require_once '../back/inc/conexion_bd.php';
 
 // 2. Cargamos la cabecera
