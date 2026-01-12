@@ -156,51 +156,79 @@ footer {
     .action-grid { grid-template-columns: 1fr; }
 }
 
-/* --- ESTILOS CARRITO VACÍO (CENTRADO PERFECTO) --- */
-.empty-cart-container {
-    display: flex;              /* Activamos Flexbox */
-    flex-direction: column;     /* Elementos uno debajo del otro */
-    align-items: center;        /* ESTO CENTRA LOS ELEMENTOS HORIZONTALMENTE */
-    justify-content: center;    /* Esto ayuda con el centrado vertical */
+
+/* --- TU BOTÓN CARTA (Estilo Solicitado) --- */
+.btn-carta-vacio {
+    /* Los colores que pediste */
+    background-color: var(--color-mustard);
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
     
-    text-align: center;         /* Asegura que el texto interno esté centrado */
-    padding: 60px 20px;
-    max-width: 600px;
+    /* Estructura necesaria para que parezca un botón */
+    display: inline-flex; /* Flex para centrar el icono y texto dentro del botón */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     
-    /* Margen automático a los lados para centrar la caja en la pantalla */
-    margin: 40px auto;          
-    
-    background-color: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 2px dashed #ccc;    /* Hice el borde un poco más visible */
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    margin-top: 15px;
+    transition: transform 0.2s, background-color 0.2s;
+    cursor: pointer;
 }
 
-.empty-cart-img {
-    width: 220px;
-    height: auto;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
-    animation: float 3s ease-in-out infinite; 
+.btn-carta-vacio:hover {
+    transform: scale(1.05);
+    background-color: #f0b955; /* Un tono más claro al pasar el ratón */
+    box-shadow: 0 5px 15px rgba(234, 168, 51, 0.4);
 }
 
 .empty-title {
     color: var(--color-navy);
     font-size: 2rem;
-    margin-bottom: 10px;
-    margin-top: 0;
+    margin: 10px 0;
+    font-weight: 800;
 }
 
 .empty-text {
     color: #666;
     font-size: 1.1rem;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     line-height: 1.5;
 }
 
-/* Animación de flotar */
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
+}
+
+/* --- ESTILOS CARRITO VACÍO (LO QUE FALTABA) --- */
+.empty-cart-container {
+    display: flex;              /* Activa el modo flexible */
+    flex-direction: column;     /* Pone los elementos uno debajo de otro */
+    align-items: center;        /* ¡ESTO ES LO QUE CENTRA TODO! */
+    justify-content: center;
+    text-align: center;         /* Asegura que el texto también esté centrado */
+    
+    width: 90%;
+    max-width: 600px;           /* Evita que sea demasiado ancha */
+    margin: 50px auto;          /* Centra la caja gris en la pantalla */
+    
+    padding: 50px 20px;
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 2px dashed #ccc;
+}
+
+.empty-cart-img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 25px;
+    display: block; 
+    animation: float 3s ease-in-out infinite; 
 }

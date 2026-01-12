@@ -67,7 +67,7 @@ if (isset($_SESSION['carrito'])) {
 
 include 'inc/cabecera.php'; 
 ?>
-
+<link rel="stylesheet" href="css/estilo.css">
 <style>
     table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
     th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: middle; }
@@ -143,18 +143,16 @@ include 'inc/cabecera.php';
         <img src="img/logo_triste.png" alt="Carrito Vacío" class="empty-cart-img">
         
         <h2 class="empty-title">¡Ups! Tu mesa está vacía...</h2>
+        
         <p class="empty-text">
             Nuestro barman está llorando porque aún no has pedido nada.<br>
             ¡Anímale pidiendo una ronda de tapas o unas cervezas!
         </p>
         
-        <a href="catalogo.php" class="btn-hero btn-carta" style="min-width: 250px;">
-            <span class="icon">🍔</span>
-            Ir a la Carta
+        <a href="catalogo.php" class="btn-carta-vacio">
+            <span>🍔</span> Ir a la Carta
         </a>
 
     </div>
 
 <?php endif; ?>
-
-<?php include 'inc/piedepagina.php'; ?>
