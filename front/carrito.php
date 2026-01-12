@@ -137,7 +137,26 @@ include 'inc/cabecera.php';
     </form>
 
 <?php else: ?>
-    <p>El carrito está vacío. <a href="catalogo.php">Ir a la carta</a></p>
+    
+    <div class="empty-cart-container">
+        
+        <img src="img/logo_triste.png" alt="Carrito Vacío" class="empty-cart-img">
+        
+        <h2 class="empty-title">¡Ups! Tu mesa está vacía...</h2>
+        
+        <p class="empty-text">
+            Nuestro barman está llorando porque aún no has pedido nada.<br>
+            ¡Anímale pidiendo una ronda de tapas o unas cervezas!
+        </p>
+        
+        <a href="catalogo.php" class="btn-hero btn-carta" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px;">
+            <span>🍔</span> Ir a la Carta y Solucionarlo
+        </a>
+
+    </div>
+
 <?php endif; ?>
+
+<?php include 'inc/piedepagina.php'; ?>
 
 <?php include 'inc/piedepagina.php'; ?>

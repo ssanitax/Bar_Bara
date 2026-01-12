@@ -155,3 +155,41 @@ footer {
     .hero-title { font-size: 2rem; }
     .action-grid { grid-template-columns: 1fr; }
 }
+
+/* --- ESTILOS CARRITO VACÍO --- */
+.empty-cart-container {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px dashed #ccc; /* Borde discontinuo para dar efecto de "hueco" */
+}
+
+.empty-cart-img {
+    width: 220px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+    animation: float 3s ease-in-out infinite; /* Flota un poquito para llamar la atención */
+}
+
+.empty-title {
+    color: var(--color-navy);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.empty-text {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
