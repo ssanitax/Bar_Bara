@@ -65,6 +65,7 @@ if (isset($_SESSION['carrito'])) {
     }
 }
 
+
 include 'inc/cabecera.php'; 
 ?>
 <link rel="stylesheet" href="css/estilo.css">
