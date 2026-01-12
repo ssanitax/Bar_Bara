@@ -43,9 +43,9 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
         }
 
         .logo-superpuesto img {
-    height: 25vw; /* El alto será el 25% del ancho de la pantalla */
-    max-height: 280px; /* Nunca superará los 280px */
-    min-height: 100px; /* Nunca será más pequeño de 100px */
+    height: 20vw;
+    max-height: 2400px;
+    min-height: 100px;
     width: auto;
     display: block;
     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
