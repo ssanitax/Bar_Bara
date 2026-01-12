@@ -44,4 +44,10 @@ class PedidoControlador {
         $sql = "UPDATE pedido SET pedir_cuenta = 'SI' WHERE id = ?";
         return $this->db->prepare($sql)->execute([$idPedido]);
     }
+
+    // NUEVA FUNCIÓN: Marca como PAGADO para limpiar el historial del cliente
+    public function marcarComoPagado($idPedido) {
+        $sql = "UPDATE pedido SET pedir_cuenta = 'PAGADO' WHERE id = ?";
+        return $this->db->prepare($sql)->execute([$idPedido]);
+    }
 }
