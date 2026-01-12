@@ -39,10 +39,11 @@ header {
 /* --- (Página de Inicio) --- */
 .hero-section {
     display: flex;
+    margin: -100px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 150px;
     text-align: center;
     min-height: 70vh; 
     background: radial-gradient(circle, rgba(234,168,51,0.2) 0%, rgba(248,241,224,1) 70%);
@@ -206,7 +207,7 @@ footer {
     100% { transform: translateY(0px); }
 }
 
-/* --- ESTILOS CARRITO VACÍO (LO QUE FALTABA) --- */
+/* --- ESTILOS CARRITO VACÍO --- */
 .empty-cart-container {
     display: flex;              /* Activa el modo flexible */
     flex-direction: column;     /* Pone los elementos uno debajo de otro */

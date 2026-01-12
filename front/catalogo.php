@@ -21,7 +21,7 @@ $stmt = $pdo->query("SELECT * FROM producto ORDER BY categoria, nombre_producto"
         border-bottom: 2px solid #ddd;
         margin-bottom: 30px;
         border-radius: 12px;
-        margin-top: 80px;
+        margin-top: -70px;
         position: sticky;
         top: 0px;                
         z-index: 900;
