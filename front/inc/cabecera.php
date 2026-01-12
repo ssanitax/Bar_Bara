@@ -40,33 +40,33 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
         /* --- AQUÍ ESTÁ EL CAMBIO PARA FIJAR EL LOGO --- */
         .logo-superpuesto {
             position: absolute;
-            /* Coordenadas Fijas: Siempre estará aquí */
+            /* Coordenadas Fijas */
             top: -30px; 
             left: 20px; 
             z-index: 100; 
         }
 
         .logo-superpuesto img {
-            /* TAMAÑO FIJO EN PÍXELES (Ya no cambia 'a lo loco') */
+            /* TAMAÑO FIJO EN PÍXELES */
             height: 160px; 
             width: auto;
             display: block;
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-            transition: all 0.3s ease; /* Suavidad si cambiamos de tamaño */
+            transition: all 0.3s ease; /* Suavidad al cambiar de tamaño */
         }
 
-        /* --- MODO TELÉFONO (Pantallas pequeñas) --- */
+        /* --- MODO TELÉFONO --- */
         @media (max-width: 768px) {
             /* En móvil, ajustamos un poco para que no sea gigante, pero se mantiene fijo */
             .logo-superpuesto img {
                 height: 120px; 
             }
             .logo-superpuesto {
-                top: -15px; /* Lo subimos un poco menos */
-                left: 15px; /* Un poco más pegado al borde */
+                top: -15px; 
+                left: 15px; 
             }
             
-            /* Opcional: Si en móvil prefieres el menú más compacto */
+            /* Mmenú más compacto */
             .header-azul {
                 padding: 0 15px;
             }
@@ -115,7 +115,7 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
         /* Ajuste para que el menú no se rompa en pantallas MUY pequeñas */
         @media (max-width: 600px) {
             .menu-lista { gap: 10px; }
-            .ocultar-movil { display: none; } /* Úsalo si quieres ocultar el texto "Hola..." */
+            .ocultar-movil { display: none; }
         }
     </style>
 </head>
