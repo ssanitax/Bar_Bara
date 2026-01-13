@@ -126,6 +126,10 @@ include 'inc/cabecera.php';
         align-items: center; 
         margin-top: 20px;
     }
+    .tamaño_foto {width: 140px;
+    height: 140px;
+    object-fit: cover; /* Evita que la imagen se deforme si no es cuadrada */
+    border-radius: 12px; /* Opcional: para que combine con nuestro diseño */}
 </style>
 
 <div class="comanda-container">
@@ -184,6 +188,7 @@ include 'inc/cabecera.php';
 
     <?php else: ?>
         <div class="empty-cart-container" style="text-align: center; background: white; padding: 50px; border-radius: 15px; border: 2px dashed #ccc;">
+        		<img class="tamaño_foto" src="img/logo_triste.png" alt="Descripción de la imagen">
             <h2 class="empty-title" style="color: #153e5c;">¡Vuestra mesa está vacía!</h2>
             <p class="empty-text">Parece que aún no habéis pedido nada de la carta.</p>
             <a href="catalogo.php" class="btn-carta-vacio" style="display: inline-block; margin-top: 20px;">🍔 Ver la Carta</a>
