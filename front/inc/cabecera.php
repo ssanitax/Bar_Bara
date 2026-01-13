@@ -18,6 +18,7 @@ $nombre_usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Cliente';
 <head>
     <meta charset="UTF-8">
     <title>Bar Bara</title>
+    <link rel="icon" type="image/png" href="img/logo_home.png">
     <style>
         body { margin: 0; font-family: sans-serif; background-color: #f8f1e0; }
         
