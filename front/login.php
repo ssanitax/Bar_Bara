@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user && password_verify($pass, $user['contrasena'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['nombre']  = $user['nombre_usuario']; 
-        header("Location: index.php");
+        header("Location: carrito.php");
         exit;
     } else {
         $error = "Correo o contraseña incorrectos.";
