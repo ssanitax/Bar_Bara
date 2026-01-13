@@ -2,7 +2,45 @@
 session_start();
 include '../back/inc/conexion_bd.php';
 
-// 1. LÓGICA: ACTUALIZAR CANTIDAD
+// 1. LÓGICA: AÑADIR PRODUCTO (Viene de catalogo.php o producto.php)
+if (isset($_POST['add'])) {
+    $id_producto = $_POST['id'];
+    $cantidad = isset($_POST['cantidad']) ? (int)$_POST['cantidad'] : 1;
+
+    // Usamos la sintaxis más compatible para la consulta
+    $stmt = $pdo->prepare("SELECT * FROM producto WHERE id = ?");
+    $stmt->execute(array($id_producto));
+    $producto_bd = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($producto_bd) {
+        if (!isset($_SESSION['carrito'])) {
+            $_SESSION['carrito'] = array();
+        }
+
+        $ya_existe = false;
+        foreach ($_SESSION['carrito'] as $indice => $item) {
+            if ($item['id'] == $id_producto) {
+                $_SESSION['carrito'][$indice]['cantidad'] = $_SESSION['carrito'][$indice]['cantidad'] + $cantidad;
+                $ya_existe = true;
+                break;
+            }
+        }
+
+        if (!$ya_existe) {
+            // Usamos array() en lugar de [] para evitar el Parse Error
+            $_SESSION['carrito'][] = array(
+                'id' => $producto_bd['id'],
+                'nombre' => $producto_bd['nombre_producto'],
+                'precio' => $producto_bd['precio'],
+                'cantidad' => $cantidad
+            );
+        }
+    }
+    header("Location: catalogo.php");
+    exit;
+}
+
+// 2. LÓGICA: ACTUALIZAR CANTIDAD (Desde el propio carrito)
 if (isset($_POST['actualizar_cantidad'])) {
     $id_producto = $_POST['id'];
     $nueva_cantidad = (int)$_POST['cantidad'];
@@ -19,7 +57,7 @@ if (isset($_POST['actualizar_cantidad'])) {
     exit;
 }
 
-// 2. LÓGICA: ELIMINAR PRODUCTO
+// 3. LÓGICA: ELIMINAR PRODUCTO
 if (isset($_POST['btn_eliminar'])) {
     $id_a_borrar = $_POST['id_eliminar'];
     foreach ($_SESSION['carrito'] as $indice => $producto) {
@@ -33,7 +71,7 @@ if (isset($_POST['btn_eliminar'])) {
     exit;
 }
 
-// 3. CALCULAR TOTAL
+// 4. CALCULAR TOTAL
 $total = 0;
 if (isset($_SESSION['carrito'])) {
     foreach ($_SESSION['carrito'] as $item) {
@@ -49,7 +87,7 @@ include 'inc/cabecera.php';
     .tabla-bar-bara { width: 100%; border-collapse: separate; border-spacing: 0 15px; }
     .fila-producto { background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 15px; }
     .fila-producto td { padding: 20px; vertical-align: middle; }
-    .fila-producto td:first-child { border-radius: 15px 0 0 15px; }
+    .fila-producto td:first-child { border-radius: 15px 0 0 15px; border-left: 5px solid #eaa833; }
     .fila-producto td:last-child { border-radius: 0 15px 15px 0; text-align: right; }
     
     .selector-cantidad { 
@@ -106,7 +144,7 @@ include 'inc/cabecera.php';
                             <form action="carrito.php" method="POST" class="selector-cantidad">
                                 <input type="hidden" name="id" value="<?php echo $p['id']; ?>">
                                 <button type="submit" name="actualizar_cantidad" class="btn-ajuste" onclick="this.nextElementSibling.stepDown()">-</button>
-                                <input type="number" name="cantidad" class="input-cant" value="<?php echo $p['cantidad']; ?>" min="1" readonly>
+                                <input type="number" name="cantidad" class="input-qty-cart" value="<?php echo $p['cantidad']; ?>" min="1" readonly style="width: 35px; text-align: center; border: none; background: transparent; font-weight: bold;">
                                 <button type="submit" name="actualizar_cantidad" class="btn-ajuste" onclick="this.previousElementSibling.stepUp()">+</button>
                             </form>
                         </td>
@@ -146,7 +184,7 @@ include 'inc/cabecera.php';
 
     <?php else: ?>
         <div class="empty-cart-container" style="text-align: center; background: white; padding: 50px; border-radius: 15px; border: 2px dashed #ccc;">
-            <h2 class="empty-title">¡Vuestra mesa está vacía!</h2>
+            <h2 class="empty-title" style="color: #153e5c;">¡Vuestra mesa está vacía!</h2>
             <p class="empty-text">Parece que aún no habéis pedido nada de la carta.</p>
             <a href="catalogo.php" class="btn-carta-vacio" style="display: inline-block; margin-top: 20px;">🍔 Ver la Carta</a>
         </div>
