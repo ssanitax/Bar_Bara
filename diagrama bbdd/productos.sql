@@ -116,10 +116,3 @@ INSERT INTO producto (id, nombre_producto, precio, descripcion, categoria, image
 (98, 'Ron con Naranja', 8.00, 'Ron blanco, zumo de naranja, hielo', 'Copas', 'copas.jpeg'),
 (99, 'Chupito de Crema', 2.50, 'Licor de crema de orujo, leche', 'Copas', 'copas.jpeg'),
 (100, 'Carajillo', 2.80, 'Café espresso, brandy, granos de café', 'Copas', 'copas.jpeg');
-
-
--- Para actualizar los productos pon esto antes
-
-SET FOREIGN_KEY_CHECKS = 0;
-TRUNCATE TABLE producto;
-SET FOREIGN_KEY_CHECKS = 1;
