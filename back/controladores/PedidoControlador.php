@@ -36,8 +36,13 @@ class PedidoControlador {
 
     public function marcarComoEntregado($idPedido) {
         // Cambiamos el estado a ENTREGADO para que desaparezca de la lista de cocina
-        $sql = "UPDATE pedido SET pedir_cuenta = 'ENTREGADO' WHERE id = ?";
-        return $this->db->prepare($sql)->execute([$idPedido]);
+        $sql = "UPDATE pedido 
+            SET pedir_cuenta = CASE 
+                WHEN pedir_cuenta = 'SI' THEN 'SI_ENTREGADO' 
+                ELSE 'ENTREGADO' 
+            END 
+            WHERE id = ?";
+    return $this->db->prepare($sql)->execute([$idPedido]);
     }
 
     public function solicitarCuenta($idPedido) {

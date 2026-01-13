@@ -13,8 +13,16 @@ $mensaje = "";
 
 // Lógica para pedir la cuenta
 if (isset($_POST['pedir_cuenta_total'])) {
-    $stmt = $pdo->prepare("UPDATE pedido SET pedir_cuenta = 'SI' WHERE usuario_id = ? AND pedir_cuenta != 'PAGADO'");
+    $sql = "UPDATE pedido 
+            SET pedir_cuenta = CASE 
+                WHEN pedir_cuenta = 'ENTREGADO' THEN 'SI_ENTREGADO' 
+                ELSE 'SI' 
+            END 
+            WHERE usuario_id = ? AND pedir_cuenta != 'PAGADO'";
+            
+    $stmt = $pdo->prepare($sql);
     $stmt->execute(array($user_id));
+    
     $mensaje = "🔔 ¡Aviso enviado! El camarero traerá la cuenta en breve.";
 }
 
