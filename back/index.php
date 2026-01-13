@@ -27,10 +27,9 @@ try {
     $totalProductos = count($productoCtrl->listarTodo());
     
     // COMANDAS POR SERVIR: Solo las que están en estado 'NO'
-    $pendientes = $pdo->query("SELECT * FROM pedido WHERE pedir_cuenta = 'NO' ORDER BY hora ASC")->fetchAll();
-    
+    $pendientes = $pdo->query("SELECT * FROM pedido WHERE pedir_cuenta IN ('NO', 'SI') ORDER BY hora ASC")->fetchAll();    
     // ALERTAS DE COBRO: Solo las que están en estado 'SI'
-    $alertas = $pdo->query("SELECT * FROM pedido WHERE pedir_cuenta = 'SI' ORDER BY hora ASC")->fetchAll();
+    $alertas = $pdo->query("SELECT * FROM pedido WHERE pedir_cuenta IN ('SI', 'SI_ENTREGADO') ORDER BY hora ASC")->fetchAll();
     
     $conteoAlertas = count($alertas);
 } catch (Exception $e) {
