@@ -41,8 +41,6 @@ CREATE TABLE contenido_pedido (
   CONSTRAINT fk_contenido_pedido_1 FOREIGN KEY (pedido_id) REFERENCES pedido(id),
   CONSTRAINT fk_contenido_pedido_2 FOREIGN KEY (producto_id) REFERENCES producto(id)
 );
-
-
 --NUEVO
 
 SET FOREIGN_KEY_CHECKS = 0;
