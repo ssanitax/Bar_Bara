@@ -24,7 +24,7 @@ if (isset($_POST['add'])) {
                 'id' => $producto_bd['id'],
                 'nombre' => $producto_bd['nombre_producto'],
                 'precio' => $producto_bd['precio'],
-                'imagen' => $producto_bd['imagen'], // Aseguramos que se guarde la imagen [cite: 446]
+                'imagen' => $producto_bd['imagen'], // Aseguramos que se guarde la imagen 
                 'cantidad' => $cantidad
             );
         }
@@ -81,7 +81,6 @@ include 'inc/cabecera.php';
     .fila-producto { background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 15px; overflow: hidden; }
     .fila-producto td { padding: 15px; vertical-align: middle; }
     
-    /* Imagen del producto en el carrito */
     .img-carrito { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; border: 2px solid #eee; } /*  */
 
     .selector-cantidad { display: flex; align-items: center; background: #f1f1f1; padding: 5px; border-radius: 30px; width: fit-content; }
